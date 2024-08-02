@@ -4,7 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
-
+    uploads_dir: '%kernel.project_dir%/public/doc'
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -19,6 +19,25 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
-
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+    
+    App\Serializer\SerializationContextBuilder:
+        decorates: 'serializer.normalizer.object'
+        arguments: ['@App\Serializer\SerializationContextBuilder.inner']
+
+    App\DataProcessor\UserProcessor:
+        bind:
+            $decoratedDataPersister: '@api_platform.doctrine.orm.state.persist_processor'
+        tags:
+            - { name: 'api_platform.data_persister', priority: 2 }
+
+    App\OpenApi\JwtDecorator:
+        decorates: 'api_platform.openapi.factory'
+        arguments: [ '@.inner' ]
+
+    acme_api.event.jwt_created_listener:
+        class: App\EventListener\JWTCreatedListener
+        arguments: [ '@request_stack' ]
+        tags:
+            - { name: kernel.event_listener, event: lexik_jwt_authentication.on_jwt_created, method: onJWTCreated }

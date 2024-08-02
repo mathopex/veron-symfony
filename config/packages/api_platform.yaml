@@ -1,0 +1,22 @@
+api_platform:
+    metadata_backward_compatibility_layer: false
+    title: 'ProChoc API'
+    description: 'API for ProChoc'
+    version: '1.0.0'
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        jsonld: [ 'application/ld+json' ]
+        json: [ 'application/merge-patch+json' ]
+        multipart: ['multipart/form-data']
+    swagger:
+        versions: [3]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
+    defaults:
+        pagination_enabled: false
+        stateless: true
+        cache_headers:
+            vary: [ 'Content-Type', 'Authorization', 'Origin' ]
