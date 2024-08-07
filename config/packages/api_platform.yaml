@@ -1,0 +1,23 @@
+api_platform:
+    metadata_backward_compatibility_layer: false
+    eager_loading:
+        max_joins: 500
+    mapping:
+        paths: ['%kernel.project_dir%/src/Entity']
+    patch_formats:
+        jsonld: [ 'application/ld+json' ]
+        json: [ 'application/merge-patch+json' ]
+        multipart: ['multipart/form-data']
+    swagger:
+        versions: [3]
+        api_keys:
+            apiKey:
+                name: Authorization
+                type: header
+    defaults:
+        cache_headers:
+            vary: [ 'Content-Type', 'Authorization', 'Origin' ]
+    collection:
+        pagination:
+            items_per_page_parameter_name: itemsPerPage #Default value
+            enabled_parameter_name: pagination

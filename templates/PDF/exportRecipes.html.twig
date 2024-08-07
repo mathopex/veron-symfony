@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Recipe</title>
+	</head>
+	<body>
+		<footer>
+		</footer>
+
+		<table>
+  <thead>
+    <tr>
+      <th> {{ lang == 'fr' ? 'Nom' : 'Name' }}</th>
+      <th>{{ lang == 'fr' ? 'Remarques' : 'Remarks ' }}</th>
+      <th class="margin-left"> {{  lang == 'fr' ? 'Mis à jour' : 'Updated'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for recipe in recipes %}
+      <tr>
+        <td>{{ lang == 'fr' ? recipe.nom : recipe.nomEn }}</td>
+        <td>{{ recipe.commentaire | ellipsis }}</td>
+        <td class="margin-left">{{ recipe.updated | date('Y/m/d')}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+	</body>
+</html>
+
+{% block stylesheets %}
+	<style>
+		thead {
+			border-bottom: 1px solid rgb(222, 226, 230);
+		}
+
+		thead tr th {
+			text-align: left;
+		}
+
+		.margin-left  {
+			text-align: center;
+			width: 150px;
+		}
+
+	</style>
+{% endblock %}
