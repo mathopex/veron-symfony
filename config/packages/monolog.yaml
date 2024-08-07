@@ -59,7 +59,3 @@ when@prod:
                 type: stream
                 channels: [deprecation]
                 path: php://stderr
-<<<<<<< HEAD
-                formatter: monolog.formatter.json
-=======
->>>>>>> 5194f2fd (Initial commit)
