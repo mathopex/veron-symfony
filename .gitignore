@@ -9,6 +9,7 @@
 /var/
 /vendor/
 /public/output.log
+/public/.htaccess
 ###< symfony/framework-bundle ###
 
 ###> lexik/jwt-authentication-bundle ###
