@@ -14,3 +14,8 @@ api_platform:
 authentication_token:
     path: /authentication_token
     methods: [ 'POST' ]
+
+verify_email:
+    path: /verify-email
+    controller: App\Controller\EmailVerificationController::verifyEmail
+    methods: GET

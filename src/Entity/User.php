@@ -45,6 +45,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(["user:get","user:post"])]
     private ?string $email = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(["user:post"])]
+    private ?string $validationToken = null;
+
     #[ORM\Column(length: 255)]
     #[Groups(["user:get","user:post"])]
     private ?string $password = null;
@@ -64,6 +68,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     #[Groups(["user:get","user:post"])]
     private ?string $address = null;
+
+    #[ORM\Column(length: 255)]
+    #[Groups(["user:get","user:post"])]
+    private ?string $is_verified = 'no';
 
     public function getId(): ?int
     {
@@ -157,5 +165,41 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getUserIdentifier(): string
     {
         return $this->email;
+    }
+
+    /**
+     * Get the value of validationToken
+     */
+    public function getValidationToken(): ?string
+    {
+        return $this->validationToken;
+    }
+
+    /**
+     * Set the value of validationToken
+     */
+    public function setValidationToken(?string $validationToken): self
+    {
+        $this->validationToken = $validationToken;
+
+        return $this;
+    }   
+
+    /**
+     * Get the value of is_verified
+     */
+    public function getIsVerified(): ?string
+    {
+        return $this->is_verified;
+    }
+
+    /**
+     * Set the value of is_verified
+     */
+    public function setIsVerified(?string $is_verified): self
+    {
+        $this->is_verified = $is_verified;
+
+        return $this;
     }
 }
