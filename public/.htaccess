@@ -1,4 +1,4 @@
-SetEnvIf Origin "^http(s)?://(.+\.)?(pro-choc\.com|pro-choc\.fr)$" origin_is=$0 
+SetEnvIf Origin "^http(s)?://(.+\.)?(veron-app\.com)$" origin_is=$0
 Header always set Access-Control-Allow-Origin %{origin_is}e env=origin_is
 Header always set Access-Control-Allow-Methods "POST, GET, OPTIONS, DELETE, PUT, PATCH"
 Header always set Access-Control-Allow-Headers "x-requested-with, Content-Type, origin, authorization, accept, client-security-token"

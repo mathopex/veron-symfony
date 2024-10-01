@@ -1,14 +1,14 @@
 controllers:
     resource: ../src/Controller/
-    type: annotation
+    type: attribute
 
 kernel:
     resource: ../src/Kernel.php
-    type: annotation
+    type: attribute
 
 api_platform:
   resource: ../src/Controller/
-  type: annotation
+  type: attribute
   prefix: /api
   
 authentication_token:
